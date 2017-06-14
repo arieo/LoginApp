@@ -18,6 +18,15 @@ public class SaveSharedPreference
 
     public static void setUserName(Context ctx, String userName)
     {
+        /*
+        // MY_PREFS_NAME - a static String variable like:
+        //public static final String MY_PREFS_NAME = "MyPrefsFile";
+
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putString("name", "Elena");
+        editor.putInt("idName", 12);
+        editor.commit();
+         */
         //Editor editor = getSharedPreferences(ctx).edit();
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
         editor.putString(PREF_USER_NAME, userName);

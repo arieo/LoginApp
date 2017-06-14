@@ -9,14 +9,17 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.loginapplication.Model.BackEnd.SaveSharedPreference;
 import com.example.loginapplication.Model.DataSource.CPConstants;
 import com.example.loginapplication.Model.DataSource.DBConstants;
 import com.example.loginapplication.R;
@@ -46,11 +49,6 @@ public class RegisterActivity extends Activity{
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
 
-
-
-        // SQLite database handler
-
-
         // Register Button Click event
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -58,7 +56,8 @@ public class RegisterActivity extends Activity{
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
 
-                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
+                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty())
+                {
                     registerUser(name, email, password);
                 } else {
                     Toast.makeText(getApplicationContext(),
@@ -81,18 +80,38 @@ public class RegisterActivity extends Activity{
 
     }
 
-    /**
-     * Function to store user in MySQL database will post params(tag, name,
-     * email, password) to register url
-     * */
-    private void registerUser(final String name, final String email,
-                              final String password) {
+    // Save User (Tag, Name, Email, Password)
+    private void registerUser(final String name,
+                              final String email,
+                              final String password)
+    {
 
         String[] arg = new String[]{ email};
-        Cursor mCursor = getContentResolver().query(CPConstants.CONTENT_URI_ACCOUNT  ,null, DBConstants.EMAIL + "=?", arg  , null );
-            if (mCursor.getCount()!= 0)
+
+        Cursor mCursor = getContentResolver().query(
+                CPConstants.CONTENT_URI_ACCOUNT,
+                null,
+                DBConstants.EMAIL + "=?", arg,
+                null);
+
+        // ERROR ERROR ERROR
+            if (mCursor != null && mCursor.getCount()!= 0)
             {
-                Toast.makeText(getApplicationContext(), "The user already exists, please login", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "User already exists, please login", Toast.LENGTH_LONG).show();
+
+                /*
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {}
+                }, 2000);
+
+                Intent intent = new Intent(
+                        RegisterActivity.this,
+                        LoginActivity.class);
+                startActivity(intent);
+                finish();
+                */
             }
             else
             {
@@ -105,17 +124,11 @@ public class RegisterActivity extends Activity{
                 Toast.makeText(getApplicationContext(), "User successfully registered", Toast.LENGTH_LONG).show();
 
                 // Move to Business page
-
+                Intent intent = new Intent(
+                        RegisterActivity.this,
+                        BusinessActivity.class);
+                startActivity(intent);
+                finish();
             }
-
-
-        Intent intent = new Intent(
-                RegisterActivity.this,
-                BusinessActivity.class);
-        startActivity(intent);
-        finish();
     }
-
-
-
 }
