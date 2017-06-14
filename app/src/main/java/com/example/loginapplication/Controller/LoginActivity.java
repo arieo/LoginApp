@@ -1,4 +1,4 @@
-package com.example.loginapplication.UI;
+package com.example.loginapplication.Controller;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -33,7 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.loginapplication.Model.Model.DBConstants;
-import com.example.loginapplication.Model.Model.SaveSharedPreference;
+import com.example.loginapplication.Model.Model.BackEnd.SaveSharedPreference;
 import com.example.loginapplication.Model.Model.CPConstants;
 import com.example.loginapplication.R;
 

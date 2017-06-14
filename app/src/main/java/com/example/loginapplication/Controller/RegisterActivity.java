@@ -1,4 +1,4 @@
-package com.example.loginapplication.UI;
+package com.example.loginapplication.Controller;
 
 /**
  * Created by Arye on 09/06/2017.
