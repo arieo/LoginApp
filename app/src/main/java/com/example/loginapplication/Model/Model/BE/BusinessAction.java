@@ -1,4 +1,4 @@
-package com.example.loginapplication.Model.DataSource.BE;
+package com.example.loginapplication.Model.Model.BE;
 
 /**
  * Created by Yakov Shechter on 30/05/2017.

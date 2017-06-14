@@ -1,4 +1,4 @@
-package com.example.loginapplication.Model.DataSource;
+package com.example.loginapplication.Model.Model;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -9,23 +9,17 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import android.os.CancellationSignal;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 
-import java.net.URI;
 import java.util.HashMap;
 
-import com.example.loginapplication.Model.DataSource.DataBaseHelper;
-
-import static com.example.loginapplication.Model.DataSource.CPConstants.uriMatcher;
-import static com.example.loginapplication.Model.DataSource.DBConstants.ACCOUNT_TABLE;
-import static com.example.loginapplication.Model.DataSource.DBConstants.BUSINESS_ACTION_TABLE;
-import static com.example.loginapplication.Model.DataSource.DBConstants.BUSINESS_TABLE;
-import static com.example.loginapplication.Model.DataSource.DBConstants.DATABASE_NAME;
-import static com.example.loginapplication.Model.DataSource.DBConstants.DATABASE_VERSION;
+import static com.example.loginapplication.Model.Model.CPConstants.uriMatcher;
+import static com.example.loginapplication.Model.Model.DBConstants.ACCOUNT_TABLE;
+import static com.example.loginapplication.Model.Model.DBConstants.BUSINESS_ACTION_TABLE;
+import static com.example.loginapplication.Model.Model.DBConstants.BUSINESS_TABLE;
 
 /**
  * Created by Arye on 07/06/2017.

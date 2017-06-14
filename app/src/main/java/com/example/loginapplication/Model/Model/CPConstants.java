@@ -1,4 +1,4 @@
-package com.example.loginapplication.Model.DataSource;
+package com.example.loginapplication.Model.Model;
 
 import android.content.UriMatcher;
 import android.net.Uri;

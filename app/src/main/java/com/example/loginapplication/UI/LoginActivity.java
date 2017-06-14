@@ -3,10 +3,8 @@ package com.example.loginapplication.UI;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -34,17 +32,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.loginapplication.Model.DataSource.DataBaseHelper;
-import com.example.loginapplication.Model.DataSource.DBConstants;
-import com.example.loginapplication.Model.DataSource.SaveSharedPreference;
-import com.example.loginapplication.Model.DataSource.CPConstants;
+import com.example.loginapplication.Model.Model.DBConstants;
+import com.example.loginapplication.Model.Model.SaveSharedPreference;
+import com.example.loginapplication.Model.Model.CPConstants;
 import com.example.loginapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
-import static android.R.attr.tag;
 
 /**
  * A login screen that offers login via email/password.

@@ -12,19 +12,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.loginapplication.Model.DataSource.CPConstants;
-import com.example.loginapplication.Model.DataSource.DBConstants;
-import com.example.loginapplication.Model.DataSource.DataBaseHelper;
+import com.example.loginapplication.Model.Model.CPConstants;
+import com.example.loginapplication.Model.Model.DBConstants;
 import com.example.loginapplication.R;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class RegisterActivity extends Activity{
 
@@ -73,7 +68,7 @@ public class RegisterActivity extends Activity{
             }
         });
 
-        // Link to Login Screen
+        // Move to Login Screen
         btnLinkToLogin.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
@@ -107,13 +102,16 @@ public class RegisterActivity extends Activity{
                 values.put(DBConstants.PASSWORD, password);
                 Uri uri = getContentResolver().insert(CPConstants.CONTENT_URI_ACCOUNT, values);
 
-                Toast.makeText(getApplicationContext(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "User successfully registered", Toast.LENGTH_LONG).show();
+
+                // Move to Business page
+
             }
 
 
         Intent intent = new Intent(
                 RegisterActivity.this,
-                LoginActivity.class);
+                BusinessActivity.class);
         startActivity(intent);
         finish();
     }

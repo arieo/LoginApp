@@ -33,8 +33,8 @@
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan" />
 
-        <provider android:name=".Model.DataSource.BusinessAndActionProvider"
-            android:authorities="com.example.loginapplication.Model.DataSource.BusinessAndActionProvider"/>
+        <provider android:name=".Model.Model.BusinessAndActionProvider"
+            android:authorities="com.example.loginapplication.Model.Model.BusinessAndActionProvider"/>
     </application>
 
 </manifest>
