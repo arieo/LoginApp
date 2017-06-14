@@ -14,15 +14,15 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 
-import com.example.loginapplication.Model.CPConstants;
-import com.example.loginapplication.Model.DBConstants;
+import com.example.loginapplication.Model.DataSource.CPConstants;
+import com.example.loginapplication.Model.DataSource.DBConstants;
 
 import java.util.HashMap;
 
-import static com.example.loginapplication.Model.CPConstants.uriMatcher;
-import static com.example.loginapplication.Model.DBConstants.ACCOUNT_TABLE;
-import static com.example.loginapplication.Model.DBConstants.BUSINESS_ACTION_TABLE;
-import static com.example.loginapplication.Model.DBConstants.BUSINESS_TABLE;
+import static com.example.loginapplication.Model.DataSource.CPConstants.uriMatcher;
+import static com.example.loginapplication.Model.DataSource.DBConstants.ACCOUNT_TABLE;
+import static com.example.loginapplication.Model.DataSource.DBConstants.BUSINESS_ACTION_TABLE;
+import static com.example.loginapplication.Model.DataSource.DBConstants.BUSINESS_TABLE;
 
 /**
  * Created by Arye on 07/06/2017.

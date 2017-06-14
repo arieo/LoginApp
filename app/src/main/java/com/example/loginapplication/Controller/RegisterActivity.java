@@ -17,8 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.loginapplication.Model.CPConstants;
-import com.example.loginapplication.Model.DBConstants;
+import com.example.loginapplication.Model.DataSource.CPConstants;
+import com.example.loginapplication.Model.DataSource.DBConstants;
 import com.example.loginapplication.R;
 
 public class RegisterActivity extends Activity{

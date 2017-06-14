@@ -32,9 +32,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.loginapplication.Model.DBConstants;
+import com.example.loginapplication.Model.DataSource.DBConstants;
 import com.example.loginapplication.Model.BackEnd.SaveSharedPreference;
-import com.example.loginapplication.Model.CPConstants;
+import com.example.loginapplication.Model.DataSource.CPConstants;
 import com.example.loginapplication.R;
 
 import java.util.ArrayList;
