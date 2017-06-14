@@ -1,4 +1,4 @@
-package com.example.loginapplication.Model.Model.Entities;
+package com.example.loginapplication.Model.Entities;
 
 /**
  * Created by Yakov Shechter on 30/05/2017.

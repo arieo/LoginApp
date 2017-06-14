@@ -1,18 +1,18 @@
-package com.example.loginapplication.Model.Model.BackEnd;
+package com.example.loginapplication.Model.BackEnd;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-import static com.example.loginapplication.Model.Model.DBConstants.DATABASE_NAME;
-import static com.example.loginapplication.Model.Model.DBConstants.DATABASE_VERSION;
-import static com.example.loginapplication.Model.Model.DBConstants.ACCOUNT_TABLE;
-import static com.example.loginapplication.Model.Model.DBConstants.BUSINESS_TABLE;
-import static com.example.loginapplication.Model.Model.DBConstants.BUSINESS_ACTION_TABLE;
-import static com.example.loginapplication.Model.Model.DBConstants.CREATE_BUSINESS_TABLE;
-import static com.example.loginapplication.Model.Model.DBConstants.CREATE_BUSINESS_ACTION_TABLE;
-import static com.example.loginapplication.Model.Model.DBConstants.CREATE_ACCOUNT_TABLE;
+import static com.example.loginapplication.Model.DBConstants.DATABASE_NAME;
+import static com.example.loginapplication.Model.DBConstants.DATABASE_VERSION;
+import static com.example.loginapplication.Model.DBConstants.ACCOUNT_TABLE;
+import static com.example.loginapplication.Model.DBConstants.BUSINESS_TABLE;
+import static com.example.loginapplication.Model.DBConstants.BUSINESS_ACTION_TABLE;
+import static com.example.loginapplication.Model.DBConstants.CREATE_BUSINESS_TABLE;
+import static com.example.loginapplication.Model.DBConstants.CREATE_BUSINESS_ACTION_TABLE;
+import static com.example.loginapplication.Model.DBConstants.CREATE_ACCOUNT_TABLE;
 /**
  * Created by Yakov Shehter on 05/06/2017.
  */

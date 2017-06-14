@@ -1,4 +1,4 @@
-package com.example.loginapplication.Model.Model.BackEnd;
+package com.example.loginapplication.Model.BackEnd;
 
 import android.content.Context;
         import android.content.SharedPreferences;
