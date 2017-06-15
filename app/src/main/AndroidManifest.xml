@@ -26,7 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Controller.BusinessActivity" />
-
+        <activity android:name=".Controller.AddActionActivity" />
+        <activity android:name=".Controller.AddBusinessActivity" />
         <activity
             android:name=".Controller.RegisterActivity"
             android:label="@string/app_name"

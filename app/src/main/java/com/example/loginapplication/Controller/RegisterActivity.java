@@ -45,6 +45,19 @@ public class RegisterActivity extends Activity{
         btnRegister = (Button) findViewById(R.id.btnRegister);
         btnLinkToLogin = (Button) findViewById(R.id.btnLinkToLoginScreen);
 
+        //check If User Already Register
+        inputEmail.setOnFocusChangeListener( new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (checkIfUserAlreadyRegister(inputEmail.getText().toString()))
+                {
+                    Toast.makeText(getApplicationContext(), "This email already in the system", Toast.LENGTH_LONG).show();
+                }
+            }
+
+
+        });
+
         // Progress dialog
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
@@ -86,32 +99,12 @@ public class RegisterActivity extends Activity{
                               final String password)
     {
 
-        String[] arg = new String[]{ email};
 
-        Cursor mCursor = getContentResolver().query(
-                CPConstants.CONTENT_URI_ACCOUNT,
-                null,
-                DBConstants.EMAIL + "=?", arg,
-                null);
 
         // ERROR ERROR ERROR
-            if (mCursor != null && mCursor.getCount()!= 0)
+            if ( checkIfUserAlreadyRegister(email))
             {
                 Toast.makeText(getApplicationContext(), "User already exists, please login", Toast.LENGTH_LONG).show();
-
-                /*
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {}
-                }, 2000);
-
-                Intent intent = new Intent(
-                        RegisterActivity.this,
-                        LoginActivity.class);
-                startActivity(intent);
-                finish();
-                */
             }
             else
             {
@@ -130,5 +123,16 @@ public class RegisterActivity extends Activity{
                 startActivity(intent);
                 finish();
             }
+    }
+    private boolean checkIfUserAlreadyRegister(String email){
+
+        String[] arg = new String[]{ email};
+
+        Cursor mCursor = getContentResolver().query(
+                CPConstants.CONTENT_URI_ACCOUNT,
+                null,
+                DBConstants.EMAIL + "=?", arg,
+                null);
+        return ( mCursor.getCount()!= 0) ? true : false;
     }
 }

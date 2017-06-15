@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,38 +37,44 @@ public class AddBusinessActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_busi_action);
-        busi_Id = (EditText) findViewById(R.id.busi_id);
-        busiEmail = (EditText) findViewById(R.id.busi_email);
-        busiWebSite = (EditText) findViewById(R.id.busi_website);
-        busiState = (EditText) findViewById(R.id.busi_state);
-        busiCity = (EditText) findViewById(R.id.busi_city);
-        busiAddress = (EditText) findViewById(R.id.busi_address);
-        busiPhone = (EditText) findViewById(R.id.busi_phone);
-        addBusinessButton = (Button) findViewById(R.id.add_business_button);
+        try{
+            setContentView(R.layout.activity_add_business);
+            busi_Id = (EditText) findViewById(R.id.busi_id);
+            busiEmail = (EditText) findViewById(R.id.busi_email);
+            busiWebSite = (EditText) findViewById(R.id.busi_website);
+            busiState = (EditText) findViewById(R.id.busi_state);
+            busiCity = (EditText) findViewById(R.id.busi_city);
+            busiAddress = (EditText) findViewById(R.id.busi_address);
+            busiPhone = (EditText) findViewById(R.id.busi_phone);
+            addBusinessButton = (Button) findViewById(R.id.btnAddBusiness);
 
-        addBusinessButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!busi_Id.toString().isEmpty()
-                        && !busiEmail.toString().isEmpty()
-                        && !busiWebSite.toString().isEmpty()
-                        && !busiState.toString().isEmpty()
-                        && !busiCity.toString().isEmpty()
-                        && !busiAddress.toString().isEmpty()
-                        && !busiPhone.toString().isEmpty())
-                {
-                    addNewBusiness(busi_Id.toString(),
-                            busiEmail.toString(),busiWebSite.toString(),
-                            busiState.toString(),busiCity.toString(),
-                            busiAddress.toString(), busiPhone.toString());
+            addBusinessButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!busi_Id.getText().toString().isEmpty()
+                            && !busiEmail.getText().toString().isEmpty()
+                            && !busiWebSite.getText().toString().isEmpty()
+                            && !busiState.getText().toString().isEmpty()
+                            && !busiCity.getText().toString().isEmpty()
+                            && !busiAddress.getText().toString().isEmpty()
+                            && !busiPhone.getText().toString().isEmpty())
+                    {
+                        addNewBusiness(busi_Id.getText().toString(),
+                                busiEmail.getText().toString(),busiWebSite.getText().toString(),
+                                busiState.getText().toString(),busiCity.getText().toString(),
+                                busiAddress.getText().toString(), busiPhone.getText().toString());
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Please complete all the details", Toast.LENGTH_LONG).show();
+                    }
                 }
-                else
-                {
-                    Toast.makeText(getApplicationContext(), "Please complete all the details", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+            });
+        }
+        catch (Exception e) {
+            Log.d("EXCEPTION", e.toString());
+        }
+
     }
 
     private  void addNewBusiness(final String id,
@@ -87,4 +94,5 @@ public class AddBusinessActivity extends Activity {
 
         Toast.makeText(getApplicationContext(), "Business successfully added", Toast.LENGTH_LONG).show();
     }
+
 }

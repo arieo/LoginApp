@@ -42,7 +42,7 @@ public class DBConstants {
     public  static final String CREATE_BUSINESS_TABLE =
             " CREATE TABLE " + BUSINESS_TABLE +
                     " ( " +
-                    ""  + _BUSI_ID + " INTEGER NOT NULL PRIMARY KEY " +
+                    ""  + _BUSI_ID + " TEXT NOT NULL PRIMARY KEY " +
                     "," + BUSI_PHONE + " TEXT NOT NULL " +
                     "," + BUSI_EMAIL + " TEXT NOT NULL" +
                     "," + BUSI_WEBSITE + " TEXT NOT NULL " +
@@ -66,7 +66,7 @@ public class DBConstants {
     public  static final String CREATE_BUSINESS_ACTION_TABLE =
             " CREATE TABLE " + BUSINESS_ACTION_TABLE +
                     " ( " +
-                    ""  + BUSINESS_ID + " INTEGER  NOT NULL" +
+                    ""  + BUSINESS_ID + " TEXT  NOT NULL" +
                     "," + ACT_START + " TEXT NOT NULL " +
                     "," + ACT_END + " TEXT NOT NULL " +
                     "," + ACT_TYPE + " TEXT NOT NULL " +
