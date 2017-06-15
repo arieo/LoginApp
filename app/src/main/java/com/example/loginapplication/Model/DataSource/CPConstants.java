@@ -8,7 +8,7 @@ import android.net.Uri;
 
 public class CPConstants {
 
-    public static final String PROVIDER_NAME = "com.example.loginapplication.Model.DataSource.BusinessAndActionProvider";
+    public static final String PROVIDER_NAME = "com.example.loginapplication.Model.BackEnd.BusinessAndActionProvider";
     public static final String URL = "content://" + PROVIDER_NAME + "/" ;
     public static final String AccountUrl = URL + DBConstants.ACCOUNT_TABLE;
     public static final String BusinessActionUrl = URL + DBConstants.BUSINESS_ACTION_TABLE;
