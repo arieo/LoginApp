@@ -54,7 +54,7 @@ public class DBConstants {
 
 
     // BusinessAction
-    public static final String BUSINESS_ACTION_TABLE = "BusinessAction";
+    public static final String BUSINESS_ACTION_TABLE = "businessAction";
     public static final String ACT_PRICE = "actPrice";
     public static final String ACT_START = "actStart";
     public static final String ACT_END = "actEnd";

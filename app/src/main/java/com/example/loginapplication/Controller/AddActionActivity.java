@@ -2,6 +2,7 @@ package com.example.loginapplication.Controller;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -56,8 +57,6 @@ public class AddActionActivity extends Activity {
                     Toast.makeText(getApplicationContext(), "Please enter Correct business ID", Toast.LENGTH_LONG).show();
                 }
             }
-
-
         });
 
 
@@ -96,12 +95,18 @@ public class AddActionActivity extends Activity {
         values.put(DBConstants.ACT_STATE, actionType);
         values.put(DBConstants.ACT_END, actionEnd);
         values.put(DBConstants.ACT_STATE, actionState);
+        values.put(DBConstants.ACT_TYPE, actionType);
         values.put(DBConstants.ACT_DESCRIPTION, actionDescription);
         values.put(DBConstants.ACT_PRICE, actionPrice);
 
         Uri uri = getContentResolver().insert(CPConstants.CONTENT_URI_BUSI_ACTION, values);
 
         Toast.makeText(getApplicationContext(), "Action successfully added", Toast.LENGTH_LONG).show();
+        Intent i = new Intent(getApplicationContext(),
+                BusinessActivity.class);
+        startActivity(i);
+        finish();
+        return;
     }
 
     private boolean checkIfBusinessExisted(String id)

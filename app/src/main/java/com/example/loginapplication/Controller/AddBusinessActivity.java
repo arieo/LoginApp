@@ -3,6 +3,7 @@ package com.example.loginapplication.Controller;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -102,6 +103,11 @@ public class AddBusinessActivity extends Activity {
         Uri uri = getContentResolver().insert(CPConstants.CONTENT_URI_BUSINESS, values);
 
         Toast.makeText(getApplicationContext(), "Business successfully added", Toast.LENGTH_LONG).show();
+        Intent i = new Intent(getApplicationContext(),
+                BusinessActivity.class);
+        startActivity(i);
+        finish();
+        return;
     }
 
     private boolean checkIfBusinessExisted(String id) {
