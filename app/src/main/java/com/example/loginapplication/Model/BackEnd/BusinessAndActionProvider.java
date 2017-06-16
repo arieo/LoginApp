@@ -130,7 +130,7 @@ public class BusinessAndActionProvider extends ContentProvider {
             return _uri;
         }
 
-        throw new SQLException("Failed to add a record into " + uri);
+        throw new SQLException("Failed to add a business into " + uri);
     }
 
     @Override

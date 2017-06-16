@@ -51,12 +51,10 @@ public class AddActionActivity extends Activity {
         businessId.setOnFocusChangeListener( new View.OnFocusChangeListener(){
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                //
                 if (!checkIfBusinessExisted(businessId.getText().toString()))
                 {
                     Toast.makeText(getApplicationContext(), "Please enter Correct business ID", Toast.LENGTH_LONG).show();
                 }
-
             }
 
 
@@ -72,7 +70,8 @@ public class AddActionActivity extends Activity {
                         && !actionEnd.getText().toString().isEmpty()
                         && !actionType.getText().toString().isEmpty()
                         && !actionState.getText().toString().isEmpty()
-                        && !actionDescription.getText().toString().isEmpty())
+                        && !actionDescription.getText().toString().isEmpty()
+                        && checkIfBusinessExisted(businessId.getText().toString()))
                 {
                     addNewBusiness(businessId.getText().toString(),
                             actionStart.getText().toString(),actionEnd.getText().toString(),
@@ -81,7 +80,7 @@ public class AddActionActivity extends Activity {
                 }
                 else
                 {
-                   String msg = (checkIfBusinessExisted(businessId.getText().toString())) ? "Please enter Correct business ID" :"Please complete all the details";
+                   String msg = (!checkIfBusinessExisted(businessId.getText().toString())) ? "Please enter Correct business ID" :"Please complete all the details";
                     Toast.makeText(getApplicationContext(), msg , Toast.LENGTH_LONG).show();
                 }
             }
