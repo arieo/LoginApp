@@ -52,7 +52,7 @@ public class AddActionActivity extends Activity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 //
-                if (checkIfBusinessExisted(businessId.getText().toString()))
+                if (!checkIfBusinessExisted(businessId.getText().toString()))
                 {
                     Toast.makeText(getApplicationContext(), "Please enter Correct business ID", Toast.LENGTH_LONG).show();
                 }
