@@ -102,7 +102,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             });
 
             Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-            mEmailSignInButton.setOnClickListener(new OnClickListener() {
+            mEmailSignInButton.setOnClickListener(new OnClickListener()
+            {
 
                 @Override
                 public void onClick(View view) {
@@ -115,7 +116,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         Cursor mCursor = getContentResolver().query(CPConstants.CONTENT_URI_ACCOUNT ,selection, mSelectionClause, arg  , null );
                         if (mCursor.getCount()!= 1)
                         {
-                            Toast.makeText(getApplicationContext(), "No user in DB please register", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Wrong User Name or Password", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
@@ -234,12 +235,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
         }
     }
 
