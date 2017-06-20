@@ -53,7 +53,17 @@
             android:parentActivityName=".Controller.LoginActivity"/>
 
         <provider android:name=".Model.BackEnd.BusinessAndActionProvider"
-            android:authorities="com.example.loginapplication.Model.BackEnd.BusinessAndActionProvider"/>
+            android:authorities="com.example.loginapplication.Model.BackEnd.BusinessAndActionProvider"
+            android:exported="true"/>
+
+        <service
+            android:name=".Model.BackEnd.MyService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.loginapplication.SERVICE_UPDATE" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
