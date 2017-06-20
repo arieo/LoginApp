@@ -3,7 +3,6 @@ package com.example.loginapplication.Controller;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -17,7 +16,6 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -36,7 +34,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.loginapplication.Model.DataSource.DBConstants;
-import com.example.loginapplication.Model.BackEnd.SaveSharedPreference;
 import com.example.loginapplication.Model.DataSource.CPConstants;
 import com.example.loginapplication.R;
 
