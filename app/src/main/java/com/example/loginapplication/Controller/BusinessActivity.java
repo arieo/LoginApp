@@ -1,12 +1,14 @@
 package com.example.loginapplication.Controller;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.loginapplication.Model.BackEnd.MyService;
 import com.example.loginapplication.R;
 
 
@@ -47,5 +49,23 @@ public class BusinessActivity extends Activity {
                 return;
             }
         });
+    }
+
+    private void runService() {
+        Intent intent = new Intent(this, MyService.class);
+          startService(intent);
+/*
+        ComponentName componentName = new ComponentName
+                (
+                        "com.example.mailo.myacadmyproject",
+                        "com.example.mailo.myacadmyproject.model.backend.MyService"
+                );
+
+        Intent intent_2 = new Intent();
+        intent_2.setComponent(componentName);
+        startService(new Intent(intent_2));
+*/
+        //IllegalArgumentException --->  Service Intent must be explicit
+        //   startService(new Intent("com.oshri.academy.SERVICE_UPDATE"));
     }
 }

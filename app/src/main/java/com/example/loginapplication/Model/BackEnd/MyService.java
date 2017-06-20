@@ -29,6 +29,7 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        android.os.Debug.waitForDebugger();
         Log.d(TAG, "onCreate");
 
         Toast.makeText(this, "start service", Toast.LENGTH_SHORT).show();
