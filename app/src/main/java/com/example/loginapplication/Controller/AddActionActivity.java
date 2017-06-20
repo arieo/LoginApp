@@ -58,8 +58,6 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
         findViewsById();
         setDateTimeField();
 
-
-
         addActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
