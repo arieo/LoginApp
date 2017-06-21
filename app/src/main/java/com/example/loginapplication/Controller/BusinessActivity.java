@@ -28,6 +28,7 @@ public class BusinessActivity extends Activity {
         bAddBusinessButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 try {
                     Intent i = new Intent(getApplicationContext(),
                             AddBusinessActivity.class);

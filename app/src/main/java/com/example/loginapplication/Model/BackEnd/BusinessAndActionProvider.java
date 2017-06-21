@@ -9,6 +9,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -44,7 +45,7 @@ public class BusinessAndActionProvider extends ContentProvider {
 
         //-- Open DataBase Connection
         db = dataBaseHelper.getWritableDatabase();
-        return (db == null)? false:true;
+        return (db == null) ? false : true;
     }
 
     @Nullable
@@ -106,15 +107,14 @@ public class BusinessAndActionProvider extends ContentProvider {
                 break;
 
 
-
             case CPConstants.ALL_BUSINESS:
-                rowID = db.insert(	BUSINESS_TABLE, "", values);
+                rowID = db.insert(BUSINESS_TABLE, "", values);
                 contentURI = CPConstants.CONTENT_URI_BUSINESS;
                 break;
 
 
             case CPConstants.ALL_BUSINESS_ACTION:
-                rowID = db.insert(	BUSINESS_ACTION_TABLE, "", values);
+                rowID = db.insert(BUSINESS_ACTION_TABLE, "", values);
                 contentURI = CPConstants.CONTENT_URI_BUSI_ACTION;
                 break;
 
@@ -125,7 +125,7 @@ public class BusinessAndActionProvider extends ContentProvider {
 
 
         if (rowID > 0) {
-            Uri _uri = ContentUris.withAppendedId(contentURI , rowID);
+            Uri _uri = ContentUris.withAppendedId(contentURI, rowID);
             SetUpdate();
             getContext().getContentResolver().notifyChange(_uri, null);
             return _uri;
@@ -146,7 +146,7 @@ public class BusinessAndActionProvider extends ContentProvider {
                 break;
 
             case CPConstants.SINGLE_ACCOUNT:
-                count = db.delete( ACCOUNT_TABLE, DBConstants._ID +  " = " + id +
+                count = db.delete(ACCOUNT_TABLE, DBConstants._ID + " = " + id +
                         (!TextUtils.isEmpty(selection) ? "  AND (" + selection + ')' : ""), selectionArgs);
                 break;
 
@@ -155,7 +155,7 @@ public class BusinessAndActionProvider extends ContentProvider {
                 break;
 
             case CPConstants.SINGLE_BUSINESS:
-                count = db.delete( BUSINESS_TABLE, DBConstants._BUSI_ID +  " = " + id +
+                count = db.delete(BUSINESS_TABLE, DBConstants._BUSI_ID + " = " + id +
                         (!TextUtils.isEmpty(selection) ? "  AND (" + selection + ')' : ""), selectionArgs);
                 break;
 
@@ -164,7 +164,7 @@ public class BusinessAndActionProvider extends ContentProvider {
                 break;
 
             case CPConstants.SINGLE_BUSINESS_ACTION:
-                count = db.delete( BUSINESS_ACTION_TABLE, DBConstants.BUSINESS_ID +  " = " + id +
+                count = db.delete(BUSINESS_ACTION_TABLE, DBConstants.BUSINESS_ID + " = " + id +
                         (!TextUtils.isEmpty(selection) ? "  AND (" + selection + ')' : ""), selectionArgs);
                 break;
 
@@ -179,7 +179,7 @@ public class BusinessAndActionProvider extends ContentProvider {
     @Nullable
     @Override
     public String getType(@NonNull Uri uri) {
-        switch (uriMatcher.match(uri)){
+        switch (uriMatcher.match(uri)) {
             /**
              * Get all accounts records
              */
@@ -227,11 +227,11 @@ public class BusinessAndActionProvider extends ContentProvider {
 
         switch (uriMatcher.match(uri)) {
             case CPConstants.ALL_ACCOUNT:
-                count = db.update(ACCOUNT_TABLE,values , selection, selectionArgs);
+                count = db.update(ACCOUNT_TABLE, values, selection, selectionArgs);
                 break;
 
             case CPConstants.SINGLE_ACCOUNT:
-                count = db.update( ACCOUNT_TABLE, values, DBConstants._ID +  " = " + id +
+                count = db.update(ACCOUNT_TABLE, values, DBConstants._ID + " = " + id +
                         (!TextUtils.isEmpty(selection) ? "  AND (" + selection + ')' : ""), selectionArgs);
                 break;
 
@@ -240,7 +240,7 @@ public class BusinessAndActionProvider extends ContentProvider {
                 break;
 
             case CPConstants.SINGLE_BUSINESS:
-                count = db.update( BUSINESS_TABLE, values, DBConstants._BUSI_ID +  " = " + id +
+                count = db.update(BUSINESS_TABLE, values, DBConstants._BUSI_ID + " = " + id +
                         (!TextUtils.isEmpty(selection) ? "  AND (" + selection + ')' : ""), selectionArgs);
                 break;
 
@@ -249,7 +249,7 @@ public class BusinessAndActionProvider extends ContentProvider {
                 break;
 
             case CPConstants.SINGLE_BUSINESS_ACTION:
-                count = db.update( BUSINESS_ACTION_TABLE, values, DBConstants.BUSINESS_ID +  " = " + id +
+                count = db.update(BUSINESS_ACTION_TABLE, values, DBConstants.BUSINESS_ID + " = " + id +
                         (!TextUtils.isEmpty(selection) ? "  AND (" + selection + ')' : ""), selectionArgs);
                 break;
 
@@ -261,19 +261,25 @@ public class BusinessAndActionProvider extends ContentProvider {
         return count;
     }
 
-    private void SetUpdate()
-    {
+    @Nullable
+    @Override
+    public Bundle call(@NonNull String method, @Nullable String arg, @Nullable Bundle extras) {
+        Bundle b = new Bundle();
+        b.putBoolean("isUpdatet", isUpdatet());
+        return b;
+    }
+
+    private void SetUpdate() {
         updateFlag = true;
     }
 
-        public boolean isUpdatet() {
-        if(updateFlag)
-        {
-            updateFlag=false;
-            return  true;
+    public boolean isUpdatet() {
+        if (updateFlag) {
+            updateFlag = false;
+            return true;
         }
 
-        return  false;
+        return false;
     }
 
     @Override

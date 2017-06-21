@@ -36,7 +36,6 @@ public class MyService extends Service {
         Thread t = new Thread() {
             @Override
             public void run() {
-
                 while (true) {
                     try {
                         Thread.sleep(5000);
@@ -44,7 +43,7 @@ public class MyService extends Service {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    if (getContentResolver().equals(true)) {
+                    if (getContentResolver().call(null,null,null,null).getBoolean("isUpdatet")) {
                         Log.d(TAG, "isUpdatet run ..");
                         Intent intent1 = new Intent("com.example.loginapplication.UPDATE");
                         MyService.this.sendBroadcast(intent1);
@@ -56,6 +55,7 @@ public class MyService extends Service {
         };
 
         t.start();
+       // t.run();
     }
 
     @Override
