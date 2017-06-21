@@ -46,9 +46,10 @@ public class MyService extends Service {
                     }
                     if (update.isUpdatet()) {
                         Log.d(TAG, "isUpdatet run ..");
-                        Intent intent1 = new Intent("com.example.loginapplication.UPDATE");
-                        MyService.this.sendBroadcast(intent1);
-                        //sendBroadcast(intent);
+                        Intent intent = new Intent();
+                        intent.setAction("com.example.loginapplication.UPDATE");
+                        //MyService.this.sendBroadcast(intent);
+                        sendBroadcast(intent);
                     }
 
                 }

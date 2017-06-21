@@ -17,9 +17,12 @@ public class BusinessActivity extends Activity {
     private Button bAddBusinessButton;
     private Button bAddBusinessActButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = new Intent("com.example.loginapplication.UPDATE");
+        sendBroadcast(intent);
         runService();
         setContentView(R.layout.activity_business);
 
@@ -56,18 +59,6 @@ public class BusinessActivity extends Activity {
     private void runService() {
         Intent intent = new Intent(this, MyService.class);
           startService(intent);
-/*
-        ComponentName componentName = new ComponentName
-                (
-                        "com.example.mailo.myacadmyproject",
-                        "com.example.mailo.myacadmyproject.model.backend.MyService"
-                );
 
-        Intent intent_2 = new Intent();
-        intent_2.setComponent(componentName);
-        startService(new Intent(intent_2));
-*/
-        //IllegalArgumentException --->  Service Intent must be explicit
-        //   startService(new Intent("com.oshri.academy.SERVICE_UPDATE"));
     }
 }
