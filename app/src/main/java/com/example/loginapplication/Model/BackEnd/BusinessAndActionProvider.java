@@ -31,17 +31,17 @@ import static com.example.loginapplication.Model.DataSource.DBConstants.BUSINESS
 
 public class BusinessAndActionProvider extends ContentProvider {
 
-    private boolean updateFlag = false;
     DataBaseHelper dataBaseHelper = null;
     protected SQLiteDatabase db;
     private static HashMap<String, String> PROJECTION;
-
+    UpdateSingleton update = null;
 
     @Override
     public boolean onCreate() {
         //-- Create DataBase Helper: (create database: DATABASE_NAME)
         Context context = getContext();
         dataBaseHelper = new DataBaseHelper(context);
+        update = UpdateSingleton.getInstance();
 
         //-- Open DataBase Connection
         db = dataBaseHelper.getWritableDatabase();
@@ -126,7 +126,7 @@ public class BusinessAndActionProvider extends ContentProvider {
 
         if (rowID > 0) {
             Uri _uri = ContentUris.withAppendedId(contentURI, rowID);
-            SetUpdate();
+            update.setUpdate();
             getContext().getContentResolver().notifyChange(_uri, null);
             return _uri;
         }
@@ -171,7 +171,7 @@ public class BusinessAndActionProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("In Delete: Unknown URI " + uri);
         }
-        SetUpdate();
+        update.setUpdate();
         getContext().getContentResolver().notifyChange(uri, null);
         return count;
     }
@@ -256,34 +256,9 @@ public class BusinessAndActionProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("In Update: Unknown URI " + uri);
         }
-        SetUpdate();
+        update.setUpdate();
         getContext().getContentResolver().notifyChange(uri, null);
         return count;
     }
 
-    @Nullable
-    @Override
-    public Bundle call(@NonNull String method, @Nullable String arg, @Nullable Bundle extras) {
-        Bundle b = new Bundle();
-        b.putBoolean("isUpdatet", isUpdatet());
-        return b;
-    }
-
-    private void SetUpdate() {
-        updateFlag = true;
-    }
-
-    public boolean isUpdatet() {
-        if (updateFlag) {
-            updateFlag = false;
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return isUpdatet();
-    }
 }

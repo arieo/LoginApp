@@ -3,9 +3,7 @@ package com.example.loginapplication.Controller;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,15 +16,15 @@ public class BusinessActivity extends Activity {
 
     private Button bAddBusinessButton;
     private Button bAddBusinessActButton;
-    private Button signOut;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        runService();
         setContentView(R.layout.activity_business);
 
         bAddBusinessButton = (Button) findViewById(R.id.add_business_button);
         bAddBusinessActButton = (Button) findViewById(R.id.add_business_act_button);
-        signOut = (Button) findViewById(R.id.sign_out);
 
         bAddBusinessButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,24 +49,6 @@ public class BusinessActivity extends Activity {
                 startActivity(i);
                 finish();
                 return;
-            }
-        });
-
-        signOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.clear();
-                editor.commit();
-
-                Intent i = new Intent(
-                        getApplicationContext(),
-                        LoginActivity.class);
-                startActivity(i);
-                finish();
-                return;
-
             }
         });
     }

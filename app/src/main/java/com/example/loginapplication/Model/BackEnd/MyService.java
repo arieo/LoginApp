@@ -18,6 +18,7 @@ public class MyService extends Service {
 
     final String TAG = "myservice";
     static boolean ServiceRun;// = false;
+    UpdateSingleton update = UpdateSingleton.getInstance();
 
     static {
         ServiceRun = false;
@@ -43,7 +44,7 @@ public class MyService extends Service {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    if (getContentResolver().call(null,null,null,null).getBoolean("isUpdatet")) {
+                    if (update.isUpdatet()) {
                         Log.d(TAG, "isUpdatet run ..");
                         Intent intent1 = new Intent("com.example.loginapplication.UPDATE");
                         MyService.this.sendBroadcast(intent1);
