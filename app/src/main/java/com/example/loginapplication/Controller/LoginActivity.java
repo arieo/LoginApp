@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +16,6 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -34,7 +34,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.loginapplication.Model.DataSource.DBConstants;
-import com.example.loginapplication.Model.BackEnd.SaveSharedPreference;
 import com.example.loginapplication.Model.DataSource.CPConstants;
 import com.example.loginapplication.R;
 
@@ -50,102 +49,120 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    // TODO: remove after connecting to a real authentication system.
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    private UserLoginTask mAuthTask = null;
 
     // UI references.startActivity(new Intent(LoginActivity.this, BusinessActivity.class));
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-
+    private SharedPreferences preferences;
+    private Button mEmailSignInButton;
+    private Button mRegisterButton;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
-        // Check if any user logged in
-        if (SaveSharedPreference.getUserName(LoginActivity.this).length() == 0) {
-            // call Login Activity
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_login);
-            // Set up the login form.
-            mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-            populateAutoComplete();
-
-            mPasswordView = (EditText) findViewById(R.id.password);
-            mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                @Override
-                public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                    if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                        attemptLogin();
-                        return true;
-                    }
-                    return false;
-                }
-            });
-
-            Button mRegisterButton = (Button) findViewById(R.id.email_register_button);
-            mRegisterButton.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-
-                    Intent intent = new Intent(
-                            LoginActivity.this,
-                            RegisterActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-
-            });
-
-            Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-            mEmailSignInButton.setOnClickListener(new OnClickListener()
-            {
-
-                @Override
-                public void onClick(View view) {
-                    attemptLogin();
-                    String[] selection = new String[]{ DBConstants.NAME,DBConstants.EMAIL};
-                    String[] arg = new String[]{ mEmailView.getText().toString(), mPasswordView.getText().toString()};
-                    String mSelectionClause = DBConstants.EMAIL + "=?" + " AND " + DBConstants.PASSWORD + "=?";
-
-                    try {
-                        Cursor mCursor = getContentResolver().query(CPConstants.CONTENT_URI_ACCOUNT ,selection, mSelectionClause, arg  , null );
-                        if (mCursor.getCount()!= 1)
-                        {
-                            Toast.makeText(getApplicationContext(), "Wrong User Name or Password", Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
-
-                            Intent intent = new Intent(
-                                    LoginActivity.this,
-                                    BusinessActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    } catch (Exception e) {
-                        Log.d("EXCEPTION", e.toString());
-                    }
-                }
-
-            });
-
-            mLoginFormView = findViewById(R.id.login_form);
-            mProgressView = findViewById(R.id.login_progress);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String name = preferences.getString("Name", "");
 
 
-        } else { // User is logged in
-            // Move to Business Activity.
+        findViewById();
+        setOnClicks();
+        populateAutoComplete();
+
+
+        if(name.equalsIgnoreCase(""))
+        {
+            // Do nothing
+        }
+        else
+        {   // User is logged in
             Intent intent = new Intent(
                     LoginActivity.this,
                     BusinessActivity.class);
             startActivity(intent);
             finish();
         }
+    }
+
+    private void findViewById()
+    {
+        mLoginFormView = findViewById(R.id.login_form);
+        mProgressView = findViewById(R.id.login_progress);
+        mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        mRegisterButton = (Button) findViewById(R.id.email_register_button);
+        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mPasswordView = (EditText) findViewById(R.id.password);
+        mEmailView.requestFocus();
+
+    }
+
+    private void setOnClicks()
+    {
+        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                if (id == R.id.login || id == EditorInfo.IME_NULL) {
+                    attemptLogin();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        mRegisterButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(
+                        LoginActivity.this,
+                        RegisterActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+        });
+
+        mEmailSignInButton.setOnClickListener(new OnClickListener()
+        {
+
+            @Override
+            public void onClick(View view) {
+                attemptLogin();
+                String[] selection = new String[]{ DBConstants.NAME,DBConstants.EMAIL};
+                String[] arg = new String[]{ mEmailView.getText().toString(), mPasswordView.getText().toString()};
+                String mSelectionClause = DBConstants.EMAIL + "=?" + " AND " + DBConstants.PASSWORD + "=?";
+
+                try
+                {
+                    Cursor mCursor = getContentResolver().query(CPConstants.CONTENT_URI_ACCOUNT ,selection, mSelectionClause, arg  , null );
+
+                    // Wrong User Name or Password
+                    if (mCursor.getCount()!= 1)
+                    {
+                        Toast.makeText(getApplicationContext(), "Wrong User Name or Password", Toast.LENGTH_SHORT).show();
+                    }
+                    // Correct Credentials
+                    else
+                    {
+                        saveAutoLogin();
+                        Intent intent = new Intent(
+                                LoginActivity.this,
+                                BusinessActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                } catch (Exception e) {
+                    Log.d("EXCEPTION", e.toString());
+                }
+            }
+
+        });
+
+
     }
 
     private void populateAutoComplete() {
@@ -191,17 +208,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
-    private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
-
+    private void attemptLogin()
+    {
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
@@ -210,17 +218,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
+
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
+        // Check for a valid password
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
-        // Check for a valid email address.
+        // Check for a valid email
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
@@ -238,14 +247,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+    // Validate email and password
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
         return email.contains("@");
     }
-
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 2;
     }
 
     /**
@@ -338,61 +345,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         int IS_PRIMARY = 1;
     }
 
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    private void saveAutoLogin()
+    {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("Name",mEmailView.getText().toString());
+        editor.apply();
 
-        private final String mEmail;
-        private final String mPassword;
+        Toast.makeText(getApplicationContext(), "User Sign In" , Toast.LENGTH_SHORT).show();
 
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
     }
+
+    private void logOut(){
+        //SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.commit();
+    }
+
 }
 
