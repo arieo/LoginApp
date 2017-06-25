@@ -19,6 +19,7 @@ public class BusinessActivity extends Activity {
     private Button bAddBusinessButton;
     private Button bAddBusinessActButton;
     private Button signOut;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
