@@ -19,10 +19,12 @@ public class BusinessActivity extends Activity {
     private Button bAddBusinessButton;
     private Button bAddBusinessActButton;
     private Button signOut;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = new Intent("com.example.loginapplication.UPDATE");
+        sendBroadcast(intent);
+        runService();
         setContentView(R.layout.activity_business);
 
         bAddBusinessButton = (Button) findViewById(R.id.add_business_button);
