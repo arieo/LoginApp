@@ -155,12 +155,12 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
     }
 
     private void setSpinnerMenu() {
-        String[] array_spinner=new String[5];
-        array_spinner[0]="option 1";
-        array_spinner[1]="option 2";
-        array_spinner[2]="option 3";
-        array_spinner[3]="option 4";
-        array_spinner[4]="option 5";
+        String[] array_spinner=new String[4];
+        array_spinner[0]="Vacation Package At Hotel";
+        array_spinner[1]="Travel Agency";
+        array_spinner[2]="Entertainment Shows";
+        array_spinner[3]="Airline Company";
+
         ArrayAdapter adapter = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, array_spinner);
         spinner.setAdapter(adapter);
