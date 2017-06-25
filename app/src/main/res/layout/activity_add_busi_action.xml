@@ -25,8 +25,6 @@
             android:id="@+id/busi_act_enum"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp"
             android:textColor="@color/input_register"
             android:textColorHint="@color/input_register_hint"/>
 
