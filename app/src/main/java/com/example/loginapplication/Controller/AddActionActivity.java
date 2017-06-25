@@ -35,8 +35,6 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
     private static final String TAG = AddBusinessActivity.class.getSimpleName();
     private Button addActionButton;
     private EditText businessId;
-    private Button actionStart;
-    private Button actionEnd;
     private EditText actionType;
     private EditText actionPrice;
     private EditText actionState;
@@ -63,15 +61,15 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
             public void onClick(View v) {
                 if(!actionPrice.getText().toString().isEmpty()
                         && !businessId.getText().toString().isEmpty()
-                        && !actionStart.getText().toString().isEmpty()
-                        && !actionEnd.getText().toString().isEmpty()
+                        && !fromDateEtxt.getText().toString().isEmpty()
+                        && !toDateEtxt.getText().toString().isEmpty()
                         && !actionType.getText().toString().isEmpty()
                         && !actionState.getText().toString().isEmpty()
                         && !actionDescription.getText().toString().isEmpty()
                         && checkIfBusinessExisted(businessId.getText().toString()))
                 {
                     addNewBusiness(businessId.getText().toString(),
-                            actionStart.getText().toString(),actionEnd.getText().toString(),
+                            fromDateEtxt.getText().toString(),toDateEtxt.getText().toString(),
                             actionType.getText().toString(),actionState.getText().toString(),
                             actionDescription.getText().toString(), actionPrice.getText().toString());
                 }
@@ -85,13 +83,13 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
     }
 
     private  void addNewBusiness(final String businessId,
-                                 final String actionStart, final String actionEnd, final String actionType ,
+                                 final String fromDateEtxt, final String toDateEtxt, final String actionType ,
                                  final String actionState, final String actionDescription, final String actionPrice) {
         ContentValues values = new ContentValues();
         values.put(DBConstants.BUSINESS_ID, businessId);
-        values.put(DBConstants.ACT_START, actionStart);
+        values.put(DBConstants.ACT_START, fromDateEtxt);
+        values.put(DBConstants.ACT_END, toDateEtxt);
         values.put(DBConstants.ACT_STATE, actionType);
-        values.put(DBConstants.ACT_END, actionEnd);
         values.put(DBConstants.ACT_STATE, actionState);
         values.put(DBConstants.ACT_TYPE, actionType);
         values.put(DBConstants.ACT_DESCRIPTION, actionDescription);
@@ -133,8 +131,6 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
         toDateEtxt.setInputType(InputType.TYPE_NULL);
 
         businessId = (EditText) findViewById(R.id.busi_act_id);
-        //actionStart = (Button) findViewById(R.id.busi_act_start);
-        //actionEnd = (Button) findViewById(R.id.busi_act_end);
         actionType = (EditText) findViewById(R.id.busi_act_type);
         actionPrice = (EditText) findViewById(R.id.busi_act_price);
         actionState = (EditText) findViewById(R.id.busi_act_state);
