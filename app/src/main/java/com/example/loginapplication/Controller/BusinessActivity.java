@@ -22,9 +22,9 @@ public class BusinessActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent("com.example.loginapplication.UPDATE");
-        sendBroadcast(intent);
-        runService();
+       // Intent intent = new Intent("com.example.loginapplication.UPDATE");
+       // sendBroadcast(intent);
+       // runService();
         setContentView(R.layout.activity_business);
 
         bAddBusinessButton = (Button) findViewById(R.id.add_business_button);
@@ -73,6 +73,8 @@ public class BusinessActivity extends Activity {
 
             }
         });
+
+        runService();
     }
 
     private void runService() {
