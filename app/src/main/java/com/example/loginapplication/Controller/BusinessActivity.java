@@ -80,14 +80,13 @@ public class BusinessActivity extends Activity {
 
     private void runService() {
         Intent intent = new Intent(this, MyService.class);
-          startService(intent);
+        startService(intent);
 /*
         ComponentName componentName = new ComponentName
                 (
                         "com.example.mailo.myacadmyproject",
                         "com.example.mailo.myacadmyproject.model.backend.MyService"
                 );
-
         Intent intent_2 = new Intent();
         intent_2.setComponent(componentName);
         startService(new Intent(intent_2));
