@@ -14,9 +14,11 @@ import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.loginapplication.Model.DataSource.CPConstants;
@@ -41,6 +43,7 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
     private EditText actionDescription;
     private EditText fromDateEtxt;
     private EditText toDateEtxt;
+    private Spinner spinner;
     private DatePickerDialog fromDatePickerDialog;
     private DatePickerDialog toDatePickerDialog;
     private SimpleDateFormat dateFormatter;
@@ -130,6 +133,9 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
         toDateEtxt = (EditText) findViewById(R.id.busi_act_ends);
         toDateEtxt.setInputType(InputType.TYPE_NULL);
 
+        spinner = (Spinner) findViewById(R.id.busi_act_enum);
+        setSpinnerMenu();
+
         businessId = (EditText) findViewById(R.id.busi_act_id);
         actionType = (EditText) findViewById(R.id.busi_act_type);
         actionPrice = (EditText) findViewById(R.id.busi_act_price);
@@ -146,6 +152,19 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
                 }
             }
         });
+    }
+
+    private void setSpinnerMenu() {
+        String[] array_spinner=new String[4];
+        array_spinner[0]="Vacation Package At Hotel";
+        array_spinner[1]="Travel Agency";
+        array_spinner[2]="Entertainment Shows";
+        array_spinner[3]="Airline Company";
+
+        ArrayAdapter adapter = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, array_spinner);
+        spinner.setAdapter(adapter);
+
     }
 
     private void setDateTimeField() {

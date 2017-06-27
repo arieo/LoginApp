@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -20,6 +20,13 @@
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp" >
+
+        <Spinner
+            android:id="@+id/busi_act_enum"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/input_register"
+            android:textColorHint="@color/input_register_hint"/>
 
         <!--busi_act_id-->
         <EditText
@@ -135,4 +142,4 @@
             android:textColor="@color/white"
             android:textSize="15dp" /-->
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
