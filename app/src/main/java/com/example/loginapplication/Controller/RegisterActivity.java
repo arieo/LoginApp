@@ -31,6 +31,15 @@ public class RegisterActivity extends Activity{
     private EditText inputPassword;
     private ProgressDialog pDialog;
 
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getApplicationContext(),
+                LoginActivity.class);
+        startActivity(i);
+        finish();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

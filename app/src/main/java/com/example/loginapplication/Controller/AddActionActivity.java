@@ -51,6 +51,15 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
 
 
     @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getApplicationContext(),
+                LoginActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_busi_action);

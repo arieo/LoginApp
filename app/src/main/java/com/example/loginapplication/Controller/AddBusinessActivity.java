@@ -90,6 +90,14 @@ public class AddBusinessActivity extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getApplicationContext(),
+                LoginActivity.class);
+        startActivity(i);
+        finish();
+    }
+
     private void addNewBusiness(final String id,
                                 final String email, final String webSite, final String state,
                                 final String city, final String address, final String phone) {
