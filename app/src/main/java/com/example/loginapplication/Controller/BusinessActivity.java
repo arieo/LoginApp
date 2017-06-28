@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.loginapplication.Model.BackEnd.MyService;
+import com.example.loginapplication.Model.BackEnd.UpdateSingleton;
 import com.example.loginapplication.R;
 
 
@@ -19,10 +20,12 @@ public class BusinessActivity extends Activity {
     private Button bAddBusinessButton;
     private Button bAddBusinessActButton;
     private Button signOut;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business);
+        //runService();
 
         bAddBusinessButton = (Button) findViewById(R.id.add_business_button);
         bAddBusinessActButton = (Button) findViewById(R.id.add_business_act_button);
@@ -71,22 +74,27 @@ public class BusinessActivity extends Activity {
             }
         });
 
-/*
-        Intent intent = new Intent("com.example.loginapplication.UPDATE");
-        sendBroadcast(intent);
-        runService();
-        */
+
+        //Intent intent = new Intent("com.example.loginapplication.UPDATE");
+        //sendBroadcast(intent);
+
+
     }
 
     private void runService() {
-        Intent intent = new Intent(this, MyService.class);
-        startService(intent);
+        UpdateSingleton updateSingleton = UpdateSingleton.getInstance();
+        if(updateSingleton.isUpdatet() == false)
+        {
+            Intent intent = new Intent(this, MyService.class);
+            startService(intent);
+        }
 /*
         ComponentName componentName = new ComponentName
                 (
                         "com.example.mailo.myacadmyproject",
                         "com.example.mailo.myacadmyproject.model.backend.MyService"
                 );
+
         Intent intent_2 = new Intent();
         intent_2.setComponent(componentName);
         startService(new Intent(intent_2));

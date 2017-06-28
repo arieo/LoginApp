@@ -1,5 +1,7 @@
 package com.example.loginapplication.Model.BackEnd;
 
+import android.content.Intent;
+
 /**
  * Created by Arye on 21/06/2017.
  */
@@ -7,7 +9,8 @@ package com.example.loginapplication.Model.BackEnd;
 public class UpdateSingleton {
 
     private static UpdateSingleton us = new UpdateSingleton();
-    private UpdateSingleton(){}
+    private UpdateSingleton(){
+    }
 
     public static UpdateSingleton getInstance(){
         return us;
