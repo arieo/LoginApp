@@ -33,4 +33,6 @@
     <string name="name">Full name</string>
     <string name="btn_add_business">Add Business</string>
     <string name="btn_add_business_action">Add Business Action</string>
+
+    <string name="spinerType">"Business Action Type"</string>
 </resources>

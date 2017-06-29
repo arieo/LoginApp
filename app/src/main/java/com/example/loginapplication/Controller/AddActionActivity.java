@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -25,6 +26,8 @@ import com.example.loginapplication.Model.DataSource.CPConstants;
 import com.example.loginapplication.Model.DataSource.DBConstants;
 import com.example.loginapplication.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -37,13 +40,13 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
     private static final String TAG = AddBusinessActivity.class.getSimpleName();
     private Button addActionButton;
     private EditText businessId;
-    private EditText actionType;
+    private String actionType;
+    //private EditText actionType;
     private EditText actionPrice;
     private EditText actionState;
     private EditText actionDescription;
     private EditText fromDateEtxt;
     private EditText toDateEtxt;
-    private Spinner spinner;
     private DatePickerDialog fromDatePickerDialog;
     private DatePickerDialog toDatePickerDialog;
     private SimpleDateFormat dateFormatter;
@@ -64,6 +67,32 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_busi_action);
 
+
+        // Spinner element
+        Spinner spinner = (Spinner) findViewById(R.id.busi_act_type);
+
+        // Spinner click listener
+        //spinner.setOnItemSelectedListener(this);
+
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+        categories.add("vacation Package");
+        categories.add("travel Agency");
+        categories.add("entertainment Shows");
+        categories.add("airlines");
+        categories.add("Travel");
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.item_sppiner, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
+
+
+
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         findViewsById();
         setDateTimeField();
@@ -75,14 +104,17 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
                         && !businessId.getText().toString().isEmpty()
                         && !fromDateEtxt.getText().toString().isEmpty()
                         && !toDateEtxt.getText().toString().isEmpty()
-                        && !actionType.getText().toString().isEmpty()
+                        && actionType != null
+                       // && !actionType.getText().toString().isEmpty()
                         && !actionState.getText().toString().isEmpty()
                         && !actionDescription.getText().toString().isEmpty()
                         && checkIfBusinessExisted(businessId.getText().toString()))
                 {
                     addNewBusiness(businessId.getText().toString(),
                             fromDateEtxt.getText().toString(),toDateEtxt.getText().toString(),
-                            actionType.getText().toString(),actionState.getText().toString(),
+                            actionType
+                            // / actionType.getText().toString()
+                            ,actionState.getText().toString(),
                             actionDescription.getText().toString(), actionPrice.getText().toString());
                 }
                 else
@@ -142,39 +174,42 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
         toDateEtxt = (EditText) findViewById(R.id.busi_act_ends);
         toDateEtxt.setInputType(InputType.TYPE_NULL);
 
-        spinner = (Spinner) findViewById(R.id.busi_act_enum);
-        setSpinnerMenu();
 
         businessId = (EditText) findViewById(R.id.busi_act_id);
-        actionType = (EditText) findViewById(R.id.busi_act_type);
+        actionType = ((Spinner) findViewById(R.id.busi_act_type)).getSelectedItem().toString();
         actionPrice = (EditText) findViewById(R.id.busi_act_price);
         actionState = (EditText) findViewById(R.id.busi_act_state);
         actionDescription = (EditText) findViewById(R.id.busi_act_description);
         addActionButton = (Button) findViewById(R.id.btnAddBusinessAction);
         //Check if business existed
-        businessId.setOnFocusChangeListener( new View.OnFocusChangeListener(){
+        businessId.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!checkIfBusinessExisted(businessId.getText().toString()))
-                {
+                if (!checkIfBusinessExisted(businessId.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "Please enter Correct business ID", Toast.LENGTH_LONG).show();
                 }
             }
         });
+
+        /*
+        fromDateEtxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+            }
+        });
+
+        toDateEtxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+            }
+        });
+        */
+
     }
 
-    private void setSpinnerMenu() {
-        String[] array_spinner=new String[4];
-        array_spinner[0]="Vacation Package At Hotel";
-        array_spinner[1]="Travel Agency";
-        array_spinner[2]="Entertainment Shows";
-        array_spinner[3]="Airline Company";
 
-        ArrayAdapter adapter = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, array_spinner);
-        spinner.setAdapter(adapter);
-
-    }
 
     private void setDateTimeField() {
         fromDateEtxt.setOnClickListener(this);

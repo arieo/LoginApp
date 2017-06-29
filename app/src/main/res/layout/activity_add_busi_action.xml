@@ -18,14 +18,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp" >
+        android:paddingRight="20dp"
+        android:weightSum="1">
 
-        <Spinner
-            android:id="@+id/busi_act_enum"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint"/>
 
         <!--busi_act_id-->
         <EditText
@@ -66,18 +61,21 @@
             android:textColor="@color/input_register"
             android:textColorHint="@color/input_register_hint"/>
 
+
+
         <!--busi_act_type-->
-        <EditText
+        <Spinner
             android:id="@+id/busi_act_type"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:layout_marginBottom="10dp"
             android:background="@color/input_register_bg"
-            android:hint="Business Action Type"
-            android:padding="10dp"
             android:inputType="textCapWords"
+            android:padding="10dp"
+            android:prompt="@string/spinerType"
             android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint"/>
+            android:textColorHint="@color/input_register_hint"
+            android:textDirection="ltr"/>
 
         <!--busi_act_price-->
         <EditText
