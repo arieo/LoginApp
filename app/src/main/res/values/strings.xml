@@ -8,6 +8,8 @@
     <string name="action_register">Register</string>
     <string name="add_business">Add New Business</string>
     <string name="add_business_act">Add New Business Activity</string>
+    <string name="delete_business_b">Delete business and his activities</string>
+    <string name="delete_b">DELETE</string>
 
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>

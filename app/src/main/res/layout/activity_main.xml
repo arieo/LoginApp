@@ -41,6 +41,18 @@
         android:text="@string/add_business_act"
         />
 
+        <Button
+            android:id="@+id/delete_business"
+            style="?android:textAppearanceSmall"
+            android:background="#ea4c88"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/white"
+            android:text="@string/delete_business_b"
+            />
+
     <Button
         android:id="@+id/sign_out"
         style="?android:textAppearanceSmall"

@@ -138,7 +138,7 @@ public class BusinessAndActionProvider extends ContentProvider {
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
 
         int count = 0;
-        String id = uri.getPathSegments().get(1);
+        String id = uri.getPathSegments().get(0);
 
         switch (uriMatcher.match(uri)) {
             case CPConstants.ALL_ACCOUNT:
@@ -171,8 +171,12 @@ public class BusinessAndActionProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("In Delete: Unknown URI " + uri);
         }
-        update.setUpdate();
-        getContext().getContentResolver().notifyChange(uri, null);
+        if(count > 0)
+        {
+            update.setUpdate();
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
         return count;
     }
 

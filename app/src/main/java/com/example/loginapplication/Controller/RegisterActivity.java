@@ -125,7 +125,7 @@ public class RegisterActivity extends Activity{
                 // Move to Business page
                 Intent intent = new Intent(
                         RegisterActivity.this,
-                        BusinessActivity.class);
+                        MainActivity.class);
                 startActivity(intent);
                 finish();
             }

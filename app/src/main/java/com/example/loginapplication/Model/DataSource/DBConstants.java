@@ -31,6 +31,7 @@ public class DBConstants {
     //Business
     public static final String BUSINESS_TABLE = "business";
     public static final String _BUSI_ID = "_busiId";
+    public static final String BUSI_NAME = "busiName";
     public static final String BUSI_PHONE = "busiPhone";
     public static final String BUSI_EMAIL = "busiEmail";
     public static final String BUSI_WEBSITE = "busiWebSite";
@@ -43,6 +44,7 @@ public class DBConstants {
             " CREATE TABLE " + BUSINESS_TABLE +
                     " ( " +
                     ""  + _BUSI_ID + " TEXT NOT NULL PRIMARY KEY " +
+                    "," + BUSI_NAME + " TEXT NOT NULL " +
                     "," + BUSI_PHONE + " TEXT NOT NULL " +
                     "," + BUSI_EMAIL + " TEXT NOT NULL" +
                     "," + BUSI_WEBSITE + " TEXT NOT NULL " +

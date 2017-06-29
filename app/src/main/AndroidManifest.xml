@@ -28,7 +28,7 @@
         </activity>
 
         <activity
-            android:name=".Controller.BusinessActivity"
+            android:name=".Controller.MainActivity"
             android:label="@string/app_name">
             <!--intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -39,11 +39,11 @@
 
     <activity
             android:name=".Controller.AddActionActivity"
-            android:parentActivityName=".Controller.BusinessActivity"
+            android:parentActivityName=".Controller.MainActivity"
             />
         <activity
             android:name=".Controller.AddBusinessActivity"
-            android:parentActivityName=".Controller.BusinessActivity"
+            android:parentActivityName=".Controller.MainActivity"
             />
 
         <activity
@@ -52,6 +52,11 @@
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".Controller.LoginActivity"/>
+
+        <activity
+            android:name=".Controller.DeleteBusinessActivity"
+            android:parentActivityName=".Controller.MainActivity"
+            />
 
         <provider android:name=".Model.BackEnd.BusinessAndActionProvider"
             android:authorities="com.example.loginapplication.Model.BackEnd.BusinessAndActionProvider"

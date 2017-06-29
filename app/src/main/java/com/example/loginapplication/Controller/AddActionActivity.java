@@ -111,7 +111,7 @@ public class AddActionActivity extends Activity implements View.OnClickListener{
 
         Toast.makeText(getApplicationContext(), "Action successfully added", Toast.LENGTH_LONG).show();
         Intent i = new Intent(getApplicationContext(),
-                BusinessActivity.class);
+                MainActivity.class);
         startActivity(i);
         finish();
         return;

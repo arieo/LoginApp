@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final int REQUEST_READ_CONTACTS = 0;
 
 
-    // UI references.startActivity(new Intent(LoginActivity.this, BusinessActivity.class));
+    // UI references.startActivity(new Intent(LoginActivity.this, MainActivity.class));
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         {   // User is logged in
             Intent intent = new Intent(
                     LoginActivity.this,
-                    BusinessActivity.class);
+                    MainActivity.class);
             startActivity(intent);
             finish();
         }
@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         saveAutoLogin();
                         Intent intent = new Intent(
                                 LoginActivity.this,
-                                BusinessActivity.class);
+                                MainActivity.class);
                         startActivity(intent);
                         finish();
                     }

@@ -1,7 +1,6 @@
 package com.example.loginapplication.Controller;
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,25 +11,38 @@ import android.widget.Button;
 
 import com.example.loginapplication.Model.BackEnd.MyService;
 import com.example.loginapplication.Model.BackEnd.UpdateSingleton;
+import com.example.loginapplication.Model.Entities.Business;
 import com.example.loginapplication.R;
 
 
-public class BusinessActivity extends Activity {
+public class MainActivity extends Activity {
 
     private Button bAddBusinessButton;
     private Button bAddBusinessActButton;
     private Button signOut;
+    private Button deleteBusi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_business);
+        setContentView(R.layout.activity_main);
         //runService();
 
         bAddBusinessButton = (Button) findViewById(R.id.add_business_button);
         bAddBusinessActButton = (Button) findViewById(R.id.add_business_act_button);
+        deleteBusi = (Button) findViewById(R.id.delete_business);
         signOut = (Button) findViewById(R.id.sign_out);
 
+        deleteBusi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),
+                        DeleteBusinessActivity.class);
+                startActivity(i);
+                finish();
+                return;
+            }
+        });
         bAddBusinessButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -30,6 +30,7 @@ public class AddBusinessActivity extends Activity {
     private static final String TAG = AddBusinessActivity.class.getSimpleName();
     private Button addBusinessButton;
     private EditText busi_Id;
+    private EditText busiName;
     private EditText busiEmail;
     private EditText busiWebSite;
     private EditText busiState;
@@ -44,6 +45,7 @@ public class AddBusinessActivity extends Activity {
         try {
             setContentView(R.layout.activity_add_business);
             busi_Id = (EditText) findViewById(R.id.busi_id);
+            busiName = (EditText) findViewById(R.id.busi_name) ;
             busiEmail = (EditText) findViewById(R.id.busi_email);
             busiWebSite = (EditText) findViewById(R.id.busi_website);
             busiState = (EditText) findViewById(R.id.busi_state);
@@ -66,6 +68,7 @@ public class AddBusinessActivity extends Activity {
                 public void onClick(View v) {
                     if (!busi_Id.getText().toString().isEmpty()
                             && !busiEmail.getText().toString().isEmpty()
+                            && !busiName.getText().toString().isEmpty()
                             && !busiWebSite.getText().toString().isEmpty()
                             && !busiState.getText().toString().isEmpty()
                             && !busiCity.getText().toString().isEmpty()
@@ -73,7 +76,7 @@ public class AddBusinessActivity extends Activity {
                             && !busiPhone.getText().toString().isEmpty()
                             && !checkIfBusinessExisted(busi_Id.getText().toString()))
                     {
-                        addNewBusiness(busi_Id.getText().toString(),
+                        addNewBusiness(busi_Id.getText().toString(), busiName.getText().toString(),
                                 busiEmail.getText().toString(), busiWebSite.getText().toString(),
                                 busiState.getText().toString(), busiCity.getText().toString(),
                                 busiAddress.getText().toString(), busiPhone.getText().toString());
@@ -98,11 +101,12 @@ public class AddBusinessActivity extends Activity {
         finish();
     }
 
-    private void addNewBusiness(final String id,
+    private void addNewBusiness(final String id, final String name,
                                 final String email, final String webSite, final String state,
                                 final String city, final String address, final String phone) {
         ContentValues values = new ContentValues();
         values.put(DBConstants._BUSI_ID, id);
+        values.put(DBConstants.BUSI_NAME, name);
         values.put(DBConstants.BUSI_EMAIL, email);
         values.put(DBConstants.BUSI_WEBSITE, webSite);
         values.put(DBConstants.BUSI_STATE, state);
@@ -114,7 +118,7 @@ public class AddBusinessActivity extends Activity {
 
         Toast.makeText(getApplicationContext(), "Business successfully added", Toast.LENGTH_LONG).show();
         Intent i = new Intent(getApplicationContext(),
-                BusinessActivity.class);
+                MainActivity.class);
         startActivity(i);
         finish();
         return;
